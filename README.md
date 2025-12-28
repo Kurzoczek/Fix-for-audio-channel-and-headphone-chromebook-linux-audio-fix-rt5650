@@ -17,3 +17,26 @@ This project provides a background bash script and a systemd service that:
 Ensure you have `alsa-utils` and `wireplumber` installed:
 ```bash
 sudo apt update && sudo apt install alsa-utils wireplumber
+
+**Let`s get to work**
+
+Copy the rt5650-fix.sh to your local bin directory:
+
+sudo cp rt5650-fix.sh /usr/local/bin/rt5650-fix
+sudo chmod +x /usr/local/bin/rt5650-fix
+
+
+Create the user service directory if it doesn't exist:
+mkdir -p ~/.config/systemd/user/
+
+Enable and Start
+
+
+systemctl --user daemon-reload
+systemctl --user enable audio-fix.service
+systemctl --user start audio-fix.service
+
+Troubleshooting:
+
+If speakers are still silent, try disabling power saving:
+echo "0" | sudo tee /sys/module/snd_hda_intel/parameters/power_save
