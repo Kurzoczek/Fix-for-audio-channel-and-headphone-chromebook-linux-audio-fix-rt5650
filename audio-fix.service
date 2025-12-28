@@ -1,0 +1,11 @@
+[Unit]
+Description=Naprawa przełączania audio dla RT5650
+After=pipewire.service wireplumber.service
+
+[Service]
+ExecStart=/usr/local/bin/rt5650-fix
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=default.target
